@@ -40,8 +40,6 @@ public class EarthquakeActivity extends AppCompatActivity {
         earthquakes.add("Moscow");
         earthquakes.add("Rio de Janeiro");
         earthquakes.add("Paris");
-        earthquakes.add("Hong Kong");
-        earthquakes.add("Berlin");
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
