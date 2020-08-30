@@ -3,13 +3,13 @@ package com.example.android.quakereport;
 public class Earthquake {
 
     // Earthquake Magnitude
-    private String mMagnitude;
+    private final String mMagnitude;
 
     // Earthquake Location
-    private String mLocation;
+    private final String mLocation;
 
     // Earthquake Date
-    private String mDate;
+    private final String mDate;
 
     // Create a new Earthquake object
     public Earthquake(String magnitude, String location, String date) {
