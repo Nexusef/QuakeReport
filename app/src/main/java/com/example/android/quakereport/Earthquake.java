@@ -30,12 +30,4 @@ public class Earthquake {
         return mDate;
     }
 
-    @Override
-    public String toString() {
-        return "Earthquake{" +
-                "mMagnitude=" + mMagnitude +
-                ", mLocation='" + mLocation + '\'' +
-                ", mDate=" + mDate +
-                '}';
-    }
 }
