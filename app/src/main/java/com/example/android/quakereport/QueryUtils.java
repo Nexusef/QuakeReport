@@ -63,7 +63,7 @@ public final class QueryUtils {
                 JSONObject properties = feature.optJSONObject("properties");
 
                 // Extract data from feature's properties object
-                String mag = properties.getString("mag");
+                double mag = properties.getDouble("mag");
                 String location = properties.getString("place");
                 long unixdate = properties.getLong("time");
 

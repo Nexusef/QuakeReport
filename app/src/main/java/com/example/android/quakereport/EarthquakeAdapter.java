@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +19,11 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     public EarthquakeAdapter(Activity context, ArrayList<Earthquake> earthquakes) {
         super(context, 0, earthquakes);
+    }
+
+    private String formatMag(double mag) {
+        DecimalFormat magFormat = new DecimalFormat("0.0");
+        return magFormat.format(mag);
     }
 
     private String formatDate(Date dateObject) {
@@ -45,7 +51,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         // Passes in Magnitude
         TextView Magnitude = listItemView.findViewById(R.id.magnitude);
-        Magnitude.setText(currentearthquake.getMagnitude());
+        String formattedMag = formatMag(currentearthquake.getMagnitude());
+        Magnitude.setText(formattedMag);
 
         // Separates String into Location and Near
         String[] splitLocation = new String[2];
