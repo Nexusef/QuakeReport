@@ -47,10 +47,24 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView Magnitude = listItemView.findViewById(R.id.magnitude);
         Magnitude.setText(currentearthquake.getMagnitude());
 
+        // Separates String into Location and Near
+        String[] splitLocation = new String[2];
+        if (currentearthquake.getLocation().contains(" of ")) {
+            splitLocation = currentearthquake.getLocation().split("(?<= of )");
+        } else {
+            splitLocation[0] = "Near the";
+            splitLocation[1] = currentearthquake.getLocation();
+        }
+
+        // Passes in Near location
+        TextView Near = listItemView.findViewById(R.id.near);
+        Near.setText(splitLocation[0]);
+
         // Passes in Location
         TextView Location = listItemView.findViewById(R.id.location);
-        Location.setText(currentearthquake.getLocation());
+        Location.setText(splitLocation[1]);
 
+        // Creates dateObject that can be formatted
         Date dateObject = new Date(currentearthquake.getTimeInMilliseconds());
 
         // Passes in Date
