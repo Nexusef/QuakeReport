@@ -1,6 +1,7 @@
 package com.example.android.quakereport;
 
 import android.app.Activity;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -24,6 +26,45 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private String formatMag(double mag) {
         DecimalFormat magFormat = new DecimalFormat("0.0");
         return magFormat.format(mag);
+    }
+
+    private int getMagnitudeColor(double mag) {
+        int colorResourceID;
+        int magnitudeFloor = (int) Math.floor(mag);
+        switch (magnitudeFloor) {
+            case 0:
+            case 1:
+                colorResourceID = R.color.magnitude1;
+                break;
+            case 2:
+                colorResourceID = R.color.magnitude2;
+                break;
+            case 3:
+                colorResourceID = R.color.magnitude3;
+                break;
+            case 4:
+                colorResourceID = R.color.magnitude4;
+                break;
+            case 5:
+                colorResourceID = R.color.magnitude5;
+                break;
+            case 6:
+                colorResourceID = R.color.magnitude6;
+                break;
+            case 7:
+                colorResourceID = R.color.magnitude7;
+                break;
+            case 8:
+                colorResourceID = R.color.magnitude8;
+                break;
+            case 9:
+                colorResourceID = R.color.magnitude9;
+                break;
+            default:
+                colorResourceID = R.color.magnitude10plus;
+                break;
+        }
+        return ContextCompat.getColor(getContext(), colorResourceID);
     }
 
     private String formatDate(Date dateObject) {
@@ -53,6 +94,11 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView Magnitude = listItemView.findViewById(R.id.magnitude);
         String formattedMag = formatMag(currentearthquake.getMagnitude());
         Magnitude.setText(formattedMag);
+
+        // Set proper magnitude_circle background
+        GradientDrawable magnitudeCircle = (GradientDrawable) Magnitude.getBackground();
+        int magnitudeColor = getMagnitudeColor(currentearthquake.getMagnitude());
+        magnitudeCircle.setColor(magnitudeColor);
 
         // Separates String into Location and Near
         String[] splitLocation = new String[2];
