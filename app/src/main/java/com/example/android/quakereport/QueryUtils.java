@@ -66,14 +66,10 @@ public final class QueryUtils {
                 double mag = properties.getDouble("mag");
                 String location = properties.getString("place");
                 long unixdate = properties.getLong("time");
-
-                // Format unixdate into human readable
-                //Date dateObject = new Date(unixdate);
-                //SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-                //String dateToDisplay = dateFormatter.format((dateObject));
+                String URL = properties.getString("url");
 
                 // Add earthquake to display
-                earthquakes.add(new Earthquake(mag, location, unixdate));
+                earthquakes.add(new Earthquake(mag, location, unixdate, URL));
             }
 
         } catch (JSONException e) {
